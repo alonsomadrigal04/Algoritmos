@@ -114,5 +114,6 @@
     "xmemory": "cpp",
     "xstddef": "cpp",
     "xtr1common": "cpp"
-  }
+  },
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
 }
