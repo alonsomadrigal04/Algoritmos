@@ -107,6 +107,40 @@ void CDPDF::insertarRecursivo(int prior, Nodo* aux)
 }
 
 
+void CDPDF::eliminar(int prior)
+{
+    if(primero == nullptr)
+    {
+        throw string("Intentando borrar elemento de lista vacía");
+    }
+    else if(primero->prioridad == prior)
+    {
+        primero = primero->siguiente;
+        primero->anterior = nullptr;
+    }
+    else if(ultimo->prioridad == prior)
+    {
+        ultimo->anterior->siguiente = nullptr;
+        ultimo = ultimo->anterior;
+    }
+    else
+    {
+        for(Nodo* n = primero; n != nullptr; n = n->siguiente)
+        {
+            if(n->prioridad == prior)
+            {
+                n->anterior->siguiente = n->siguiente;
+                n->siguiente->anterior = n->anterior;
+                delete n;
+                return;
+            }
+        }
+        throw string("Intentando borrar un elemento no existente");
+    }
+
+}
+
+
 int main()
 {
     CDPDF cola;
@@ -116,6 +150,7 @@ int main()
     cola.insertarRecursivo(4);
     cola.insertarRecursivo(5);
     cola.insertarRecursivo(0);
+    cola.eliminar(5);
     cola.mostrar();
 
     return 0;
