@@ -7,7 +7,7 @@ using namespace std;
 Conjunto::Nodo::Nodo(int elDato) : dato{elDato}, izquierdo{nullptr}, derecho{nullptr} {
 }
 
-Conjunto::Conjunto() : raiz{nullptr} {
+Conjunto::Conjunto() : raiz{nullptr}, talla{0} {
 }
   
 void Conjunto::insertar(int unDato) {
@@ -15,8 +15,10 @@ void Conjunto::insertar(int unDato) {
 }
 
 void Conjunto::insertar(int unDato, Nodo * & n) {
-   if (n == nullptr)
+   if (n == nullptr){
       n = new Nodo(unDato);
+        talla ++;
+   }
    else if (unDato < n->dato)
       insertar(unDato, n->izquierdo);
    else if (unDato > n->dato)
@@ -51,6 +53,7 @@ void Conjunto::eliminar(int unDato, Nodo * & n) {
       else
 	 n = n->derecho;
       delete basura;
+      talla --;
    }
 }
 
@@ -66,4 +69,15 @@ bool Conjunto::buscar(int unDato) const {
    return false;
 }
 
+void Conjunto::MostrarTalla(){
+    cout << talla;
+}
+
+int main()
+{
+    Conjunto c;
+    c.insertar(10);
+    c.insertar(5);
+    c.MostrarTalla();
+}
 
