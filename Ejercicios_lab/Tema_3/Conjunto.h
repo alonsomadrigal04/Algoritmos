@@ -12,6 +12,8 @@ class Conjunto {
 
     void insertar(int, Nodo * &);
 
+    void mostrar(Nodo *) const;
+
     void eliminar(int, Nodo * &);
 
     int  minimoEnSubarbol(Nodo *) const;
@@ -26,11 +28,15 @@ class Conjunto {
 
     bool arbolesIguales(Nodo *, Nodo *) const;
 
+    bool verificarProfundidad(Nodo *, int) const;
+
     public:
 
         Conjunto();
 
         void insertar(int);
+
+        void mostrar() const;
 
         void eliminar(int);
 
@@ -45,7 +51,10 @@ class Conjunto {
         bool noHayHijosSinHermanos() const;
 
         bool arbolesIguales(const Conjunto &) const;
+        
+        void mostrarPorNiveles() const;
 
+        bool verificarProfundidad(int) const;
         
 
 

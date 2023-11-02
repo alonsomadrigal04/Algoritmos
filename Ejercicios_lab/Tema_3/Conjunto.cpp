@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <queue>
+
 using namespace std;
 
 #include "Conjunto.h"
@@ -22,6 +24,19 @@ void Conjunto::insertar(int unDato, Nodo * & n) {
    else if (unDato > n->dato)
       insertar(unDato, n->derecho);
    // No insertamos duplicados
+}
+
+void Conjunto::mostrar() const {
+   mostrar(raiz);
+   cout << endl;
+}
+
+void Conjunto::mostrar(Nodo * n) const {
+   if (n != nullptr) {
+      mostrar(n->izquierdo);
+      cout << n->dato << " ";
+      mostrar(n->derecho);
+   }
 }
 
 int Conjunto::minimoEnSubarbol(Nodo * n) const { // Sabiendo que n != nullptr
@@ -111,20 +126,6 @@ int Conjunto::altura(Nodo* n) const
 }
 
 
-/*
-
-int Conjunto::altura() const {
-   return altura(raiz);
-}
-
-int Conjunto::altura(Nodo * n) const {
-   if (n == nullptr)
-      return -1;
-   return 1 + max(altura(n->izquierdo), altura(n->derecho));
-}
-
-*/
-
 bool Conjunto::noHayHijosSinHermanos() const
 {
     return noHayHijosSinHermanos(raiz);
@@ -149,4 +150,62 @@ bool Conjunto::arbolesIguales(Nodo * n1, Nodo* n2) const
     return arbolesIguales(n1->derecho, n2->derecho) && arbolesIguales(n1->izquierdo, n2->izquierdo);
 }
 
+void Conjunto::mostrarPorNiveles() const
+{
+   queue<int> listafinal;
+   queue<Nodo *> listapendienteNodos;
 
+   listapendienteNodos.push(raiz);
+
+   cout << "<";
+   while(!listapendienteNodos.empty())
+   {
+      listafinal.push(listapendienteNodos.front()->dato);
+      cout << listapendienteNodos.front()->dato;
+
+      if(listapendienteNodos.front()->izquierdo != nullptr)
+         listapendienteNodos.push(listapendienteNodos.front()->izquierdo);
+      if(listapendienteNodos.front()->derecho != nullptr)
+         listapendienteNodos.push(listapendienteNodos.front()->derecho);
+      
+      listapendienteNodos.pop();
+      cout << " ";
+   }
+
+   cout << ">" << endl;
+
+}
+
+bool Conjunto::verificarProfundidad(int profundidad) const
+{
+   if (raiz == nullptr)
+      return false;
+   return verificarProfundidad(raiz, profundidad);
+}
+
+bool Conjunto::verificarProfundidad(Nodo * n, int profundidad) const
+{
+   if(profundidad == 0)
+      return true;
+   else if(n == nullptr)
+      return false;
+   return n->derecho, profundidad -1 || n->izquierdo, profundidad -1;
+}
+
+
+int  main()
+{
+      Conjunto c;
+      c.insertar(37);
+      c.insertar(32);
+      c.insertar(75);
+      c.insertar(4);
+      c.insertar(23);
+      c.insertar(38);
+      c.insertar(84);
+      c.insertar(63);
+      cout << c.sumarRecursivo() << endl;
+      c.eliminar(3);
+      c.mostrarPorNiveles();
+      return 0;
+}
