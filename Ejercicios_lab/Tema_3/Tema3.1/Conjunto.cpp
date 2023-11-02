@@ -58,26 +58,63 @@ void Conjunto::eliminar(int unDato, Nodo * & n) {
 }
 
 bool Conjunto::buscar(int unDato) const {
-   Nodo * n = raiz;
-   while (n != nullptr)
-      if (unDato < n->dato)
-	 n = n->izquierdo;
-      else if (unDato > n->dato)
-	 n = n->derecho;
-      else
-	 return true;
-   return false;
+   return buscar(raiz, unDato);
 }
+
+bool Conjunto::buscar(Nodo * n, int dato) const
+{
+   if(n == nullptr)
+      return false;
+   if(dato > n->dato)
+      return buscar(n->derecho, dato);
+   if(dato < n->dato)
+      return buscar(n->izquierdo, dato);
+   return true;
+}
+
 
 void Conjunto::MostrarTalla(){
     cout << talla;
 }
+
+void Conjunto::MostrarOrdenados() const
+{
+   cout << "{";
+   MostrarOrdenados(raiz);
+   cout << "}";
+}
+
+void Conjunto::MostrarOrdenados(Nodo * n) const
+{
+   if(n!=nullptr)
+   {
+      MostrarOrdenados(n->izquierdo);
+      cout << " " << n->dato << " ";
+      MostrarOrdenados(n->derecho);
+   }
+}
+
+void Conjunto::vaciar()
+{
+   return vaciar(raiz);
+}
+
+void Conjunto::vaciar(Nodo * n)
+{
+   vaciar();
+}
+
+
 
 int main()
 {
     Conjunto c;
     c.insertar(10);
     c.insertar(5);
-    c.MostrarTalla();
+    c.insertar(6);
+    c.insertar(19);
+    c.insertar(90);
+    c.MostrarOrdenados();
+    cout << c.buscar(5) << endl;
 }
 
