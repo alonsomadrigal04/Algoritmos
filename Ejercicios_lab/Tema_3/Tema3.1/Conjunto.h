@@ -8,6 +8,7 @@ class Conjunto {
     };
 
     Nodo * raiz;
+    Nodo * minimo;
     int talla;
 
     void insertar(int, Nodo * &);
@@ -26,5 +27,6 @@ class Conjunto {
         void MostrarTalla();
         void MostrarOrdenados() const;
         void vaciar();
+        int consultarMinimo() const;
 
 };

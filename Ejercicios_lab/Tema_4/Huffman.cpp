@@ -33,7 +33,22 @@ Huffman::Huffman(const vector<pair<char, float>> & frec) : raiz{nullptr}
 
     while(!colaPrioridad.empty())
     {
-        
+        Nodo * n = new Nodo(' ', 0);
+        n->izquierdo = colaPrioridad.top();
+        colaPrioridad.pop();
+        n->derecho = colaPrioridad.top();
+        colaPrioridad.pop();
+        n->frecuencia = n->izquierdo->frecuencia + n->derecho->frecuencia;
+        n->izquierdo->padre = n;
+        n->derecho->padre = n;
+        n->izquierdo->bit = '0';
+        n->derecho->bit = '1';
+        colaPrioridad.push(n);
     }
 
+}
+
+string Huffman::codificar(const string &mensaje) const
+{
+    
 }
