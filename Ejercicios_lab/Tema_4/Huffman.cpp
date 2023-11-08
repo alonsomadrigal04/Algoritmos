@@ -50,5 +50,46 @@ Huffman::Huffman(const vector<pair<char, float>> & frec) : raiz{nullptr}
 
 string Huffman::codificar(const string &mensaje) const
 {
-    
+    string codigo = "";
+    Nodo * referencia;
+
+    for(char letra : mensaje)
+    {
+        try
+        {
+            Nodo * referencia = hojas.at(letra);
+        }
+        catch(out_of_range error) 
+        {
+            throw string("Intentando acceder a un caracter que no esta codificado: " + letra);
+        }
+
+        while(referencia != raiz)
+        {
+          codigo += referencia->bit;
+          referencia = referencia->padre;  
+        }
+    }
+        return codigo;
+}
+
+string Huffman::decodificar(const string & codificado) const
+{
+    string mensaje = "";
+    Nodo * referencia = raiz;
+
+    for(char numero : codificado)
+    {
+        if(numero == 0)
+            referencia = referencia->izquierdo;
+        else    
+            referencia = referencia->derecho;
+
+        if(referencia->derecho == nullptr)
+        {
+            mensaje += referencia->caracter;
+            referencia = raiz;
+        }
+    }
+    return mensaje;
 }
