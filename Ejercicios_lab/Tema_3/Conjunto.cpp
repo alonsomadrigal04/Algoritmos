@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <queue>
 
@@ -62,9 +61,9 @@ void Conjunto::eliminar(int unDato, Nodo * & n) {
    } else {
       Nodo * basura = n;
       if (n->izquierdo != nullptr)
-	 n = n->izquierdo;
+	      n = n->izquierdo;
       else
-	 n = n->derecho;
+	      n = n->derecho;
       delete basura;
    }
 }
