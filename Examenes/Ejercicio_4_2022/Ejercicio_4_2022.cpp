@@ -30,7 +30,7 @@ void Conjunto::insertar(int unDato)
             }
             else if(unDato == aux->dato)
                 return;
-            else
+            else if (unDato < aux->dato)
             {
                 aux->tallaIzquierdo ++;
                 padre = aux;
@@ -125,6 +125,7 @@ int  main()
     
     c.insertar(9);
     c.insertar(7);
+    c.insertar(8);
     c.insertar(8);
 
 

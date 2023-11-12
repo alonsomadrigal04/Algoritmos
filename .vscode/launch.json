@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/Programación/Algoritmos/Ejercicios_lab/Tema_2/CPDF",
-      "program": "f:/Programación/Algoritmos/Ejercicios_lab/Tema_2/CPDF/build/Debug/outDebug",
+      "cwd": "f:/Programación/Algoritmos",
+      "program": "f:/Programación/Algoritmos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
