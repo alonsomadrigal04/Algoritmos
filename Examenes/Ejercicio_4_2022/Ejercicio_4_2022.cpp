@@ -13,7 +13,39 @@ Conjunto::Conjunto() : raiz{nullptr}, maximo{nullptr} {}
 
 void Conjunto::insertar(int unDato)
 {
-    
+    Nodo * nuevo = new Nodo(unDato);
+    if(raiz == nullptr)
+        raiz = nuevo;
+    else if(raiz != nullptr)
+    {
+        Nodo * aux = raiz;
+        Nodo * padre = aux;
+        while(aux != nullptr)
+        {
+            if(unDato > aux->dato)
+            {
+                aux->tallaDerecho ++;
+                padre = aux;
+                aux = aux->derecho;
+            }
+            else if(unDato == aux->dato)
+                return;
+            else
+            {
+                aux->tallaIzquierdo ++;
+                padre = aux;
+                aux = aux->izquierdo;
+            }
+        }
+        if(padre->dato < unDato)
+        {
+            padre->derecho = nuevo;
+        }
+        else
+        {
+            padre->izquierdo = nuevo;
+        }
+    }
 }
 
 void Conjunto::mostrar() const {
@@ -24,7 +56,7 @@ void Conjunto::mostrar() const {
 void Conjunto::mostrar(Nodo * n) const {
    if (n != nullptr) {
       mostrar(n->izquierdo);
-      cout << n->dato << " ";
+      cout << n->dato << n->tallaDerecho << n->tallaIzquierdo << " ";
       mostrar(n->derecho);
    }
 }
@@ -95,8 +127,7 @@ int  main()
     c.insertar(7);
     c.insertar(8);
 
-    c.eliminarMaximo();
-    c.eliminarMaximo();
+
 
     c.mostrar();
     return 0;
