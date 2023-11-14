@@ -9,10 +9,12 @@ class Conjunto
 
     Nodo * primero;
     int talla;
-    void insertar(float dato, int i, Nodo * n);
+    void insertar(float, int, Nodo *);
+    void mostrar(Nodo * );
 
     public:
         Conjunto();
-        void insertar(float dato, int i);
+        void insertar(float, int);
+        void mostrar();
 
 };
