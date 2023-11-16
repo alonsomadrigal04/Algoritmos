@@ -74,7 +74,7 @@ float maximoPremsio(vector<Partida>& partidas)
  ***************************************************************************/
 
 #define DESCONOCIDO -1
-
+ 
 float maximoPremio(vector<Partida>& partidas, int i, vector<float>& resultado)
 {    
     if (resultado[i] == DESCONOCIDO)
