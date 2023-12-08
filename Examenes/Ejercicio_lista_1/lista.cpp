@@ -12,13 +12,6 @@ void Conjunto::insertar(float valor, int i, Nodo* n)
     if(i == 0)
     {
         Nodo * nuevo = new Nodo(valor);
-        nuevo->siguiente = n;
-        primero = nuevo;
-        talla++;
-    }
-    else if(i == 1)
-    {
-        Nodo * nuevo = new Nodo(valor);
         nuevo->siguiente = n->siguiente;
         n->siguiente = nuevo;
         talla++;
